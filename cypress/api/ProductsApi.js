@@ -5,17 +5,12 @@ class ProductsApi {
         return cy.request({
 
             method: 'POST',
-
             url: '/produtos',
-
             headers: {
                 Authorization: token
             },
-
             body: product,
-
             failOnStatusCode: false,
-
             ...options
 
         })
@@ -53,15 +48,11 @@ class ProductsApi {
         return cy.request({
 
             method: 'DELETE',
-
             url: `/produtos/${id}`,
-
             headers: {
                 Authorization: token
             },
-
             failOnStatusCode: true,
-
             ...options
 
         })
@@ -73,13 +64,9 @@ class ProductsApi {
         const request = {
 
             method: 'PUT',
-
             url: `/produtos/${id}`,
-
             body: product,
-
             failOnStatusCode: true,
-
             ...options
 
         }

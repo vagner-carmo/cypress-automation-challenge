@@ -13,7 +13,9 @@ describe('Users front-end', () => {
         }
 
         UserRegisterPage.acessarPagina()
+
         UserRegisterPage.cadastrarUsuario(usuario)
+
         UserRegisterPage.validarCadastroComSucesso()
 
     })
@@ -28,7 +30,9 @@ describe('Users front-end', () => {
         }
 
         UserRegisterPage.acessarPagina()
+
         UserRegisterPage.cadastrarUsuario(usuario)
+        
         UserRegisterPage.validarEmailJaExistente()
 
     })

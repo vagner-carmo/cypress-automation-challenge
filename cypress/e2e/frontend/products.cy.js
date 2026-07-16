@@ -16,6 +16,7 @@ describe('Products front-end', () => {
         LoginPage.acessarPagina()
         
         LoginPage.realizarLogin(usuario.email, usuario.senha)
+
         LoginPage.validarLoginComSucesso(usuario.nome)
 
         ProductRegisterPage.acessarPagina()
@@ -59,9 +60,7 @@ describe('Products front-end', () => {
 
         ProductRegisterPage.cadastrarProduto(product)
 
-        ProductRegisterPage.validarMensagem(
-            'Já existe produto com esse nome'
-        )
+        ProductRegisterPage.validarMensagem('Já existe produto com esse nome')
 
     })
 

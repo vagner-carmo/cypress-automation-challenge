@@ -1,7 +1,6 @@
 export const getUserSchema = {
 
     type: 'object',
-
     required: [
         'nome',
         'email',
@@ -9,31 +8,23 @@ export const getUserSchema = {
         'administrador',
         '_id',
     ],
-
     properties: {
-
         nome: {
             type: 'string'
         },
-
         email: {
             type: 'string'
         },
-
         password: {
             type: 'string'
         },
-
         administrador: {
             type: 'string'
         },
-
         _id: {
             type: 'string'
         }
-
     },
-
     additionalProperties: false
 
 }

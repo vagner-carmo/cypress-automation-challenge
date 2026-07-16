@@ -4,8 +4,6 @@ export const productRegisterLocators = {
     inputDescricao: '[data-testid="descricao"]',
     inputQuantidade: '[data-testid="quantity"]',
     inputImagem: 'input[type="file"]',
-
     btnCadastrar: '[data-testid="cadastarProdutos"]',
-
     alertMessage: '.alert'
 }
