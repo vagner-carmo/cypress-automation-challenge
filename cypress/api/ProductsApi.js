@@ -5,7 +5,7 @@ class ProductsApi {
         return cy.request({
 
             method: 'POST',
-            url: '/produtos',
+            url: `${Cypress.env('apiUrl')}/produtos`,
             headers: {
                 Authorization: token
             },
@@ -22,7 +22,7 @@ class ProductsApi {
         return cy.request({
 
             method: 'GET',
-            url: '/produtos',
+            url: `${Cypress.env('apiUrl')}/produtos`,
             failOnStatusCode: true,
             ...options
 
@@ -35,7 +35,7 @@ class ProductsApi {
         return cy.request({
 
             method: 'GET',
-            url: `/produtos/${id}`,
+            url: `${Cypress.env('apiUrl')}/produtos/${id}`,
             failOnStatusCode: true,
             ...options
 
@@ -48,7 +48,7 @@ class ProductsApi {
         return cy.request({
 
             method: 'DELETE',
-            url: `/produtos/${id}`,
+            url: `${Cypress.env('apiUrl')}/produtos/${id}`,
             headers: {
                 Authorization: token
             },
@@ -64,7 +64,7 @@ class ProductsApi {
         const request = {
 
             method: 'PUT',
-            url: `/produtos/${id}`,
+            url: `${Cypress.env('apiUrl')}/produtos/${id}`,
             body: product,
             failOnStatusCode: true,
             ...options

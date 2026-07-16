@@ -3,7 +3,7 @@ import { productRegisterLocators as locator } from './productRegisterLocators'
 class ProductRegisterPage {
 
     acessarPagina() {
-        cy.visit('https://front.serverest.dev/admin/cadastrarprodutos/')
+        cy.visit('/admin/cadastrarprodutos/')
     }
 
     preencherNome(nome) {

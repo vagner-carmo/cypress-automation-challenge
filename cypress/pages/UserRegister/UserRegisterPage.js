@@ -3,7 +3,7 @@ import { userRegisterLocators as locator } from './UserRegisterLocators'
 class UserRegisterPage {
 
     acessarPagina() {
-        cy.visit('https://front.serverest.dev/cadastrarusuarios')
+        cy.visit('/cadastrarusuarios')
     }
 
     preencherNome(nome) {

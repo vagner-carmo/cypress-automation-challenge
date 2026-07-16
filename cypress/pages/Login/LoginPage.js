@@ -3,7 +3,7 @@ import { loginLocators as locator } from './LoginLocators'
 class LoginPage {
 
     acessarPagina() {
-        cy.visit('https://front.serverest.dev/')
+        cy.visit('/')
     }
 
     preencherEmail(email) {

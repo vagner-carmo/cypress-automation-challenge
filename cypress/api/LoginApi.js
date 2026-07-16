@@ -5,7 +5,7 @@ class LoginApi {
         return cy.request({
 
             method: 'POST',
-            url: 'https://serverest.dev/login',
+            url: `${Cypress.env('apiUrl')}/login`,
             body: credentials,
             failOnStatusCode: false,
             ...options

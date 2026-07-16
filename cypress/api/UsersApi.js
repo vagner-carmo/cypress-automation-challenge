@@ -5,7 +5,7 @@ class UsersApi {
         return cy.request({
 
             method: 'POST',
-            url: 'https://serverest.dev/usuarios',
+            url: `${Cypress.env('apiUrl')}/usuarios`,
             body: user,
             failOnStatusCode: false,
             ...options
@@ -18,7 +18,7 @@ class UsersApi {
 
         return cy.request({
             method: 'GET',
-            url: `https://serverest.dev/usuarios/${id}`,
+            url: `${Cypress.env('apiUrl')}/usuarios/${id}`,
             failOnStatusCode: true,
             ...options
         })
@@ -29,7 +29,7 @@ class UsersApi {
 
         return cy.request({
             method: 'GET',
-            url: 'https://serverest.dev/usuarios',
+            url: `${Cypress.env('apiUrl')}/usuarios`,
             failOnStatusCode: true,
             ...options
         })
@@ -41,7 +41,7 @@ class UsersApi {
         return cy.request({
 
             method: 'PUT',
-            url: `https://serverest.dev/usuarios/${id}`,
+            url: `${Cypress.env('apiUrl')}/usuarios/${id}`,
             body: user,
             failOnStatusCode: true,
             ...options
@@ -55,7 +55,7 @@ class UsersApi {
         return cy.request({
 
             method: 'DELETE',
-            url: `https://serverest.dev/usuarios/${id}`,
+            url: `${Cypress.env('apiUrl')}/usuarios/${id}`,
             failOnStatusCode: true,
             ...options
 
