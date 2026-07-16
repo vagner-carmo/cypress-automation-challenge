@@ -1,0 +1,29 @@
+{
+  "name": "cypresstest",
+  "version": "1.0.0",
+  "description": "Automation testing project using Cypress for UI and API testing.",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:api": "cypress run --spec \"cypress/e2e/api/**/*.cy.js\"",
+    "cy:run:frontend": "cypress run --spec \"cypress/e2e/frontend/**/*.cy.js\""
+},
+  "keywords": [
+    "cypress",
+    "automation",
+    "e2e",
+    "api",
+    "testing"
+],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@faker-js/faker": "^10.5.0",
+    "cypress": "^15.18.1"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0"
+  }
+}

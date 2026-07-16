@@ -1,0 +1,30 @@
+export const deleteProductShoppingCarErrorSchema = {
+
+    type: 'object',
+
+    required: [
+        'message',
+        'idCarrinhos'
+    ],
+
+    properties: {
+
+        message: {
+            type: 'string'
+        },
+
+        idCarrinhos: {
+
+            type: 'array',
+
+            items: {
+                type: 'string'
+            }
+
+        }
+
+    },
+
+    additionalProperties: false
+
+}

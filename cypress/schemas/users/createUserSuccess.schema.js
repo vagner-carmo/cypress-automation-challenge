@@ -1,0 +1,24 @@
+export const createUserSuccessSchema = {
+
+    type: 'object',
+
+    required: [
+        'message',
+        '_id'
+    ],
+
+    properties: {
+
+        message: {
+            type: 'string'
+        },
+
+        _id: {
+            type: 'string'
+        }
+
+    },
+
+    additionalProperties: false
+
+}

@@ -1,0 +1,39 @@
+export const getProductSchema = {
+
+    type: 'object',
+
+    required: [
+        'nome',
+        'preco',
+        'descricao',
+        'quantidade',
+        '_id',
+    ],
+
+    properties: {
+
+        nome: {
+            type: 'string'
+        },
+
+        preco: {
+            type: 'number'
+        },
+
+        descricao: {
+            type: 'string'
+        },
+
+        quantidade: {
+            type: 'number'
+        },
+        
+        _id: {
+            type: 'string'
+        },
+
+    },
+
+    additionalProperties: false
+
+}
