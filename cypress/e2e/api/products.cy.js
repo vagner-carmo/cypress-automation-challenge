@@ -118,15 +118,6 @@ describe('Products API', () => {
                 expect(response.body.produtos).to.be.an('array')
                 expect(response.body.produtos.length).to.eq(response.body.quantidade)
 
-                expect(response.body.produtos[0])
-                    .to.have.all.keys(
-                        'nome',
-                        'preco',
-                        'descricao',
-                        'quantidade',
-                        '_id'
-                    )
-
                 validateSchema(
                     getAllProductsSchema,
                     response.body
