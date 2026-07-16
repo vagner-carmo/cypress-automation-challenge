@@ -8,39 +8,46 @@ class UserRegisterPage {
 
     preencherNome(nome) {
         cy.get(locator.inputNome)
+            .should('be.visible')
             .clear()
             .type(nome)
     }
 
     preencherEmail(email) {
         cy.get(locator.inputEmail)
+            .should('be.visible')
             .clear()
             .type(email)
     }
 
     preencherSenha(senha) {
         cy.get(locator.inputSenha)
+            .should('be.visible')
             .clear()
             .type(senha)
     }
 
     selecionarAdministrador() {
         cy.get(locator.checkboxAdministrador)
+            .should('be.visible')
             .check({ force: true })
     }
 
     desmarcarAdministrador() {
         cy.get(locator.checkboxAdministrador)
+            .should('be.visible')
             .uncheck({ force: true })
     }
 
     clicarCadastrar() {
         cy.get(locator.btnCadastrar)
+            .should('be.visible')
             .click()
     }
 
     clicarEntrar() {
         cy.get(locator.btnEntrar)
+            .should('be.visible')
             .click()
     }
 

@@ -8,23 +8,27 @@ class LoginPage {
 
     preencherEmail(email) {
         cy.get(locator.inputEmail)
+            .should('be.visible')
             .clear()
             .type(email)
     }
 
     preencherSenha(senha) {
         cy.get(locator.inputSenha)
+            .should('be.visible')
             .clear()
             .type(senha)
     }
 
     clicarEntrar() {
         cy.get(locator.btnEntrar)
+            .should('be.visible')
             .click()
     }
 
     clicarCadastrar() {
         cy.get(locator.btnCadastrar)
+            .should('be.visible')
             .click()
     }
 

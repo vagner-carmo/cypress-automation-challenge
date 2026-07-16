@@ -7,28 +7,43 @@ class ProductRegisterPage {
     }
 
     preencherNome(nome) {
-        cy.get(locator.inputNome).clear().type(nome)
+        cy.get(locator.inputNome)
+            .should('be.visible')
+            .clear()
+            .type(nome)
     }
 
     preencherPreco(preco) {
-        cy.get(locator.inputPreco).clear().type(preco)
+        cy.get(locator.inputPreco)
+            .should('be.visible')
+            .clear()
+            .type(preco)
     }
 
     preencherDescricao(descricao) {
-        cy.get(locator.inputDescricao).clear().type(descricao)
+        cy.get(locator.inputDescricao)
+            .should('be.visible')
+            .clear()
+            .type(descricao)
     }
 
     preencherQuantidade(quantidade) {
-        cy.get(locator.inputQuantidade).clear().type(quantidade)
+        cy.get(locator.inputQuantidade)
+            .should('be.visible')
+            .clear()
+            .type(quantidade)
     }
 
     adicionarImagem(caminhoImagem) {
         cy.get(locator.inputImagem)
+            .should('be.visible')
             .selectFile(caminhoImagem, { force: true })
     }
 
     clicarCadastrar() {
-        cy.get(locator.btnCadastrar).click()
+        cy.get(locator.btnCadastrar)
+            .should('be.visible')
+            .click()
     }
 
     cadastrarProduto(produto) {
@@ -46,7 +61,9 @@ class ProductRegisterPage {
     }
 
     clicarCadastrar() {
-        cy.get(locator.btnCadastrar).click()
+        cy.get(locator.btnCadastrar)
+            .should('be.visible')
+            .click()
     }
 
     validarCadastroComSucesso(nomeProduto) {
