@@ -22,18 +22,20 @@ describe('Users front-end', () => {
 
     it('Should not create a user with an existing email', () => {
 
-        const usuario = {
-            nome: "Fulano da Silva",
-            email: "fulano@qa.com",
-            senha: '123456',
-            administrador: true
-        }
+        cy.createUser().then(usuario => {
 
-        UserRegisterPage.acessarPagina()
+            UserRegisterPage.acessarPagina()
 
-        UserRegisterPage.cadastrarUsuario(usuario)
-        
-        UserRegisterPage.validarEmailJaExistente()
+            UserRegisterPage.cadastrarUsuario({
+                nome: usuario.nome,
+                email: usuario.email,
+                senha: usuario.password,
+                administrador: true
+            })
+
+            UserRegisterPage.validarEmailJaExistente()
+
+        })
 
     })
 

@@ -5,25 +5,28 @@ import ProductRegisterPage from '../../pages/ProductRegister/productRegisterPage
 
 describe('Products front-end', () => {
 
+    let user
+
     beforeEach(() => {
 
-        const usuario = {
-                    nome: 'Fulano da Silva',
-                    email: 'fulano@qa.com',
-                    senha: 'teste'
-                }
-        
-        LoginPage.acessarPagina()
-        
-        LoginPage.realizarLogin(usuario.email, usuario.senha)
+        cy.createUser().then(createdUser => {
 
-        LoginPage.validarLoginComSucesso(usuario.nome)
+            user = createdUser
 
-        ProductRegisterPage.acessarPagina()
-        
+            LoginPage.acessarPagina()
+
+            LoginPage.realizarLogin(
+                user.email,
+                user.password
+            )
+
+            ProductRegisterPage.acessarPagina()
+            
+        })
+
     })
 
-   it('Should create a product successfully', () => {
+    it('Should create a product successfully', () => {
 
         const produto = {
 
@@ -34,7 +37,7 @@ describe('Products front-end', () => {
             imagem: 'cypress/fixtures/imagens/imagemTeste.jpg'
 
         }
-    
+
         ProductRegisterPage.cadastrarProduto(produto)
 
         ProductRegisterPage.validarCadastroComSucesso(produto.nome)

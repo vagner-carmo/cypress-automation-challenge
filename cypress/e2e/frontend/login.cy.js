@@ -3,19 +3,28 @@ import LoginPage from '../../pages/Login/LoginPage'
 
 describe('Login', () => {
 
-    it('Should log in successfully', () => {
+    let user
 
-        const usuario = {
-            nome: 'Fulano da Silva',
-            email: 'fulano@qa.com',
-            senha: 'teste'
-        }
+    beforeEach(() => {
+
+        cy.createUser().then(createdUser => {
+
+            user = createdUser
+
+        })
 
         LoginPage.acessarPagina()
 
-        LoginPage.realizarLogin(usuario.email, usuario.senha)
+    })
 
-        LoginPage.validarLoginComSucesso(usuario.nome)
+    it('Should login successfully', () => {
+
+        LoginPage.realizarLogin(
+            user.email,
+            user.password
+        )
+
+        LoginPage.validarLoginComSucesso(user.nome)
 
     })
 
@@ -25,7 +34,7 @@ describe('Login', () => {
 
         LoginPage.realizarLogin(
             'teste@teste.com',
-            'teste'
+            'teste777'
         )
 
         LoginPage.validarMensagemErro('Email e/ou senha inválidos')

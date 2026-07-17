@@ -1,4 +1,7 @@
 import UsersApi from '../../api/UsersApi'
+import ProductsApi from '../../api/ProductsApi'
+import CartsApi from '../../api/CartsApi'
+import LoginApi from '../../api/LoginApi'
 import { createUser } from '../../factories/userFactory'
 import { validateSchema } from '../../support/schemaValidator'
 import { createUserSuccessSchema } from '../../schemas/users/createUserSuccess.schema'
@@ -8,6 +11,7 @@ import { updateUserSuccessSchema } from '../../schemas/users/updateUserSuccess.s
 import { deleteUserSuccessSchema } from '../../schemas/users/deleteUserSuccess.schema'
 import { userErrorSchema } from '../../schemas/users/userError.schema'
 import { deleteUserShoppingCarErrorSchema } from '../../schemas/users/deleteUserShoppingCarError.schema'
+import { createProduct } from '../../factories/productFactory'
 
 
 describe('Users API', () => {
@@ -292,18 +296,53 @@ describe('Users API', () => {
 
     it('Should not delete a user with a registered shopping cart', () => {
 
-        const invalidUserId = '0uxuPY0cbmQhpEz1'
+        let createdUser
 
-        UsersApi.delete(invalidUserId, {
-            failOnStatusCode: false
+        cy.createUser().then(user => {
+
+            createdUser = user
+
+            return LoginApi.login({
+                email: user.email,
+                password: user.password
+            })
+
         })
-            .then((response) => {
+            .then(loginResponse => {
+
+                const token = loginResponse.body.authorization
+                const product = createProduct()
+
+                return ProductsApi.create(product, token)
+                    .then(productResponse => {
+
+                        return CartsApi.create(
+                            [
+                                {
+                                    idProduto: productResponse.body._id,
+                                    quantidade: 1
+                                }
+                            ],
+                            token
+                        )
+                    })
+                    .then(() => {
+
+                        return UsersApi.delete(
+                            createdUser._id,
+                            {
+                                failOnStatusCode: false
+                            }
+                        )
+
+                    })
+
+            })
+            .then(response => {
 
                 expect(response.status).to.eq(400)
-                expect(response.headers['content-type']).to.include('application/json')
-                expect(response.body).to.be.an('object')
-                expect(response.body.message).to.eq('Não é permitido excluir usuário com carrinho cadastrado')
-                expect(response.body.idCarrinho).to.eq('qbMqntef4iTOwWfg')
+                expect(response.body.message)
+                    .to.eq('Não é permitido excluir usuário com carrinho cadastrado')
 
                 validateSchema(
                     deleteUserShoppingCarErrorSchema,

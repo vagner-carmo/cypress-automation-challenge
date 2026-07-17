@@ -3,7 +3,9 @@ import { productRegisterLocators as locator } from './productRegisterLocators'
 class ProductRegisterPage {
 
     acessarPagina() {
-        cy.visit('/admin/cadastrarprodutos/')
+        cy.contains('Cadastrar Produtos')
+        .should('be.visible')
+        .click()
     }
 
     preencherNome(nome) {

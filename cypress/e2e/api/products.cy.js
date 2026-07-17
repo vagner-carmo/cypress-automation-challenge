@@ -1,5 +1,6 @@
 import LoginApi from '../../api/LoginApi'
 import ProductsApi from '../../api/ProductsApi'
+import CartsApi from '../../api/CartsApi'
 import { validateSchema } from '../../support/schemaValidator'
 import { createProduct } from '../../factories/productFactory'
 import { createProductSuccessSchema } from '../../schemas/products/createProductSuccess.schema'
@@ -251,18 +252,39 @@ describe('Products API', () => {
     })
 
     it('Should not delete a product associated with a shopping cart', () => {
+        let product
 
-        const productId = 'K6leHdftCeOJj8BJ'
+        cy.getAccessToken().then(token => {
 
-        cy.getAccessToken().then((token) => {
+            product = createProduct()
 
-            ProductsApi.delete(
-                productId,
-                token,
-                {
-                    failOnStatusCode: false
-                }
-            )
+            ProductsApi.create(product, token)
+                .then(productResponse => {
+
+                    const productId = productResponse.body._id
+
+                    return CartsApi.create(
+                        [
+                            {
+                                idProduto: productId,
+                                quantidade: 1
+                            }
+                        ],
+                        token
+                    )
+                        .then(() => {
+
+                            return ProductsApi.delete(
+                                productId,
+                                token,
+                                {
+                                    failOnStatusCode: false
+                                }
+                            )
+
+                        })
+
+                })
                 .then((response) => {
 
                     expect(response.status).to.eq(400)
@@ -451,19 +473,19 @@ describe('Products API', () => {
                             failOnStatusCode: false
                         }
                     )
-                    .then((response) => {
+                        .then((response) => {
 
-                        expect(response.status).to.eq(401)
-                        expect(response.headers['content-type']).to.include('application/json')
-                        expect(response.body).to.be.an('object')
-                        expect(response.body.message).to.eq('Token de acesso ausente, inválido, expirado ou usuário do token não existe mais')
+                            expect(response.status).to.eq(401)
+                            expect(response.headers['content-type']).to.include('application/json')
+                            expect(response.body).to.be.an('object')
+                            expect(response.body.message).to.eq('Token de acesso ausente, inválido, expirado ou usuário do token não existe mais')
 
-                        validateSchema(
-                            productErrorSchema,
-                            response.body
-                        )
+                            validateSchema(
+                                productErrorSchema,
+                                response.body
+                            )
 
-                    })
+                        })
 
                 })
 
